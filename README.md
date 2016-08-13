@@ -25,7 +25,7 @@ To use ListCalendar, use the following options:
 
 Print all of the dates from January 1, 2016 to January 30, 2016, but only those that land on Monday, Wednesday, or Friday.
 
-    $ ./lcal.py -s 2016-01-01 -e 2016-01-30 -d MWF
+    $ ./lcal.py -s 2016-01-01 -e 2016-01-30 -w MWF
     Friday. January 01, 2016
     Monday. January 04, 2016
     Wednesday. January 06, 2016
