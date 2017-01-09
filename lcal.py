@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     p.add_option("-s", "--start", dest="startDate", help="Start Date in YYYY-MM-DD (Required)", metavar="2016-01-01")
     p.add_option("-e", "--end", dest="endDate", help="End Date in YYYY-MM-DD (Required)", metavar="2016-01-31")
-    p.add_option("-w", "--dow", dest="daysOfWeek", help="Only print these days of the week: Monday, Tuesday, Wednesday, thuRsday, Friday, Saturday, sUnday. Default is MTWRFSU", metavar="MTWRFSU", default="MTWRFSU")
+    p.add_option("-d", "--dow", dest="daysOfWeek", help="Only print these days of the week: Monday, Tuesday, Wednesday, thuRsday, Friday, Saturday, sUnday. Default is MTWRFSU", metavar="MTWRFSU", default="MTWRFSU")
     options, arguments = p.parse_args()
 
     if re.match("[MTWRFSUmtwrfsu]+$", options.daysOfWeek) is None:
