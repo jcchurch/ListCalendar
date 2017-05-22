@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import datetime
-import optparse
+import argparse
 import re
 
 def createDate(stringDate):
@@ -40,13 +40,12 @@ def getLetterCodeForDayOfWeek(date):
     return "MTWRFSU"[ date.weekday() ]
 
 if __name__ == '__main__':
-    desc = """List dates in sequential order"""
-    p = optparse.OptionParser(usage="%prog [options] [file]", version="%prog 0.1", description=desc)
+    p = argparse.ArgumentParser(description="List dates in sequential order")
 
-    p.add_option("-s", "--start", dest="startDate", help="Start Date in YYYY-MM-DD (Required)", metavar="2016-01-01")
-    p.add_option("-e", "--end", dest="endDate", help="End Date in YYYY-MM-DD (Required)", metavar="2016-01-31")
-    p.add_option("-d", "--dow", dest="daysOfWeek", help="Only print these days of the week: Monday, Tuesday, Wednesday, thuRsday, Friday, Saturday, sUnday. Default is MTWRFSU", metavar="MTWRFSU", default="MTWRFSU")
-    options, arguments = p.parse_args()
+    p.add_argument("-s", "--start", dest="startDate", help="Start Date in YYYY-MM-DD (Required)", metavar="2016-01-01")
+    p.add_argument("-e", "--end", dest="endDate", help="End Date in YYYY-MM-DD (Required)", metavar="2016-01-31")
+    p.add_argument("-d", "--dow", dest="daysOfWeek", help="Only print these days of the week: Monday, Tuesday, Wednesday, thuRsday, Friday, Saturday, sUnday. Default is MTWRFSU", metavar="MTWRFSU", default="MTWRFSU")
+    options = p.parse_args()
 
     if re.match("[MTWRFSUmtwrfsu]+$", options.daysOfWeek) is None:
         raise ValueError("This is not in day of week pattern. Use only the appropriate 1 letter codes.")
