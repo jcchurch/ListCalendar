@@ -14,7 +14,7 @@ To use ListCalendar, use the following options:
 
     -h, --help            show this help message and exit
     -s 2016-01-01, --start 2016-01-01
-                          Start Date in YYYY-MM-DD (Required)
+                          Start Date in YYYY-MM-DD. Uses current date as the default.
     -e 2016-01-31, --end 2016-01-31
                           End Date in YYYY-MM-DD (Required)
     -d MTWRFSU, --dow MTWRFSU

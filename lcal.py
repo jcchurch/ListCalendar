@@ -43,7 +43,7 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description="List dates in sequential order")
 
     p.add_argument("-s", "--start", metavar="2016-01-01", dest="startDate",
-                   help="Start Date in YYYY-MM-DD (Required)")
+                   help="Start Date in YYYY-MM-DD. Uses current date as the default.")
     p.add_argument("-e", "--end", dest="endDate",
                    help="End Date in YYYY-MM-DD (Required)", metavar="2016-01-31")
     p.add_argument("-d", "--dow", dest="daysOfWeek", metavar="MTWRFSU", default="MTWRFSU",
@@ -57,7 +57,11 @@ if __name__ == '__main__':
 
     options.daysOfWeek = options.daysOfWeek.upper()
 
-    if options.startDate is not None and options.endDate is not None:
+    if options.startDate is None:
+        now = datetime.date.today()
+        options.startDate = "{0:04d}-{1:02d}-{2:02d}".format(now.year, now.month, now.day)
+
+    if options.endDate is not None:
         displaySequentialDates(options.startDate, options.endDate, options.daysOfWeek, options.dateFormat)
     else:
-        print("Both a start date and an end date are required.")
+        print("An end date is required.")
