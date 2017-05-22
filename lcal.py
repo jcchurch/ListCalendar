@@ -27,13 +27,13 @@ def createDate(stringDate):
 
     return datetime.date(year, month, day)
 
-def displaySequentialDates(startStr, endStr, daysOfWeek):
+def displaySequentialDates(startStr, endStr, daysOfWeek, dateFormat):
     startDate = createDate(options.startDate)
     endDate = createDate(options.endDate)
 
     while startDate <= endDate:
         if getLetterCodeForDayOfWeek(startDate) in daysOfWeek:
-            print(startDate.strftime("%A. %B %d, %Y"))
+            print(startDate.strftime(dateFormat))
         startDate += datetime.timedelta(days=1)
 
 def getLetterCodeForDayOfWeek(date):
@@ -42,9 +42,14 @@ def getLetterCodeForDayOfWeek(date):
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description="List dates in sequential order")
 
-    p.add_argument("-s", "--start", dest="startDate", help="Start Date in YYYY-MM-DD (Required)", metavar="2016-01-01")
-    p.add_argument("-e", "--end", dest="endDate", help="End Date in YYYY-MM-DD (Required)", metavar="2016-01-31")
-    p.add_argument("-d", "--dow", dest="daysOfWeek", help="Only print these days of the week: Monday, Tuesday, Wednesday, thuRsday, Friday, Saturday, sUnday. Default is MTWRFSU", metavar="MTWRFSU", default="MTWRFSU")
+    p.add_argument("-s", "--start", metavar="2016-01-01", dest="startDate",
+                   help="Start Date in YYYY-MM-DD (Required)")
+    p.add_argument("-e", "--end", dest="endDate",
+                   help="End Date in YYYY-MM-DD (Required)", metavar="2016-01-31")
+    p.add_argument("-d", "--dow", dest="daysOfWeek", metavar="MTWRFSU", default="MTWRFSU",
+                   help="Only print these days of the week: Monday, Tuesday, Wednesday, thuRsday, Friday, Saturday, sUnday. Default is MTWRFSU")
+    p.add_argument("-f", "--format", dest="dateFormat", metavar="'%Y-%m-%d'", default="%A. %B %d, %Y",
+                   help="Specify Date Format. Uses Python3's datetime format. Default is '%%A. %%B %%d, %%Y'")
     options = p.parse_args()
 
     if re.match("[MTWRFSUmtwrfsu]+$", options.daysOfWeek) is None:
@@ -53,6 +58,6 @@ if __name__ == '__main__':
     options.daysOfWeek = options.daysOfWeek.upper()
 
     if options.startDate is not None and options.endDate is not None:
-        displaySequentialDates(options.startDate, options.endDate, options.daysOfWeek)
+        displaySequentialDates(options.startDate, options.endDate, options.daysOfWeek, options.dateFormat)
     else:
         print("Both a start date and an end date are required.")

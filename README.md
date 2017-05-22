@@ -12,14 +12,18 @@ ListCalendar requires Python 3.
 
 To use ListCalendar, use the following options:
 
-    -s YYYY-MM-DD, --start YYYY-MM-DD
-        Starting Date. Required.
-    -e YYYY-MM-DD, --end YYYY-MM-DD
-        Ending Date. Required
-    -d MTWRFSU, --dow=MTWRFSU
-        Only print these days of the week: Monday, Tuesday,
-        Wednesday, thuRsday, Friday, Saturday, sUnday. Default
-        is MTWRFSU
+    -h, --help            show this help message and exit
+    -s 2016-01-01, --start 2016-01-01
+                          Start Date in YYYY-MM-DD (Required)
+    -e 2016-01-31, --end 2016-01-31
+                          End Date in YYYY-MM-DD (Required)
+    -d MTWRFSU, --dow MTWRFSU
+                          Only print these days of the week: Monday, Tuesday,
+                          Wednesday, thuRsday, Friday, Saturday, sUnday. Default
+                          is MTWRFSU
+    -f '%Y-%m-%d', --format '%Y-%m-%d'
+                          Specify Date Format. Uses Python3's datetime format.
+                          Default is '%A. %B %d, %Y'
 
 ## Examples
 
