@@ -61,7 +61,7 @@ if __name__ == '__main__':
         now = datetime.date.today()
         options.startDate = "{0:04d}-{1:02d}-{2:02d}".format(now.year, now.month, now.day)
 
-    if options.endDate is not None:
-        displaySequentialDates(options.startDate, options.endDate, options.daysOfWeek, options.dateFormat)
-    else:
-        print("An end date is required.")
+    if options.endDate is None:
+        raise ValueError("An end date is required.")
+
+    displaySequentialDates(options.startDate, options.endDate, options.daysOfWeek, options.dateFormat)
